@@ -17,7 +17,7 @@
             <span class="nav-link-text ms-1">Inicio</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link text-white" id="crear_tabla" href="../pages/crear_tabla.php">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">table_view</i>
@@ -25,7 +25,7 @@
             <span class="nav-link-text ms-1">Crear Tabla</span>
           </a>
         </li>
-        <!--<li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link text-white " href="../pages/virtual-reality.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10">view_in_ar</i>

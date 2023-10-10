@@ -17,6 +17,7 @@ function agregar(argument) {
 	var atributo2 = document.createAttribute("required");
 	select.setAttributeNode(atributo2);
 	select.id = 'columna_'+idTmp;
+	select.name = 'columna_'+idTmp;
 	select.innerHTML += '<option value="">Seleccione Columna</option>';
 	var label = document.createElement('label');
 	label.classList.add("text-left", "mt-2");
@@ -33,8 +34,9 @@ function agregar(argument) {
 	div2.appendChild(label);
 	div.appendChild(div2);
 
-	numero_id.value = idTmp;
 	arreglo.push(idTmp);
+	numero_id.value = arreglo;
+	console.log(numero_id.value);
 
 	/*if (eliminar_elemento.hasAttribute("onclick") == true) {
 	  // hacer algo
@@ -50,26 +52,15 @@ function agregar(argument) {
         $('.especialidades'+idTmp).select2();
     });
 
-	/*var atributo = document.createAttribute("for");
-	atributo.value = "nuevoVal";
-	label_dato.setAttributeNode(atributo);
-	label_dato.innerHTML = 'Seleccione Datos de Tabla Pacientes';
-	var select = document.createElement('div');
-	var form = document.createElement('div');
-	select.innerHTML = 'for="exampleFormControlSelect1">Seleccione Dato de Tabla Pacientes</label>';
-	select.innerHTML = '<select id="columna_'+idTmp+'" name="" class="columna js-states form-control"><option value="">Seleccione Columna</option></select>';
-	select.classList.add("col-md-3");
-	form.classList.add("form-group");
-	form.appendChild(select);*/
 	columnas.appendChild(div);
-	filtro_columnas(idTmp);
+	ajaxColumnas(idTmp);
 }
 
 
 function filtro_columnas(idTmp){
     
     var xmlhttp = new XMLHttpRequest();
-    var url = "consulta_columnas.php?";
+    var url = "consulta_columnas.php";
     xmlhttp.onreadystatechange=function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var array = JSON.parse(xmlhttp.responseText);
@@ -91,6 +82,7 @@ function filtro_columnas(idTmp){
 
 function eliminar_columna() {
 	
+	var numero_id = document.getElementById('numero_id');
 	var id_numero = document.getElementById('numero_id').value;
 	//console.log(arreglo.length);
 	if (arreglo.length > 0) {
@@ -104,14 +96,47 @@ function eliminar_columna() {
 		const node = document.getElementById("div_"+tmp_eliminar);
 		if (node.parentNode) {
 	  		node.parentNode.removeChild(node);
-	  		arreglo.pop()
+	  		arreglo.pop();
+	  		numero_id.value = arreglo;
 		} 
 
 	}
-	/*const node = document.getElementById("div_"+id_numero);
-	if (node.parentNode) {
-	  node.parentNode.removeChild(node);
-	}
-	*/
 	
+}
+
+
+function ajaxColumnas(idTmp){
+    
+    $.ajax({
+      data: {
+          
+          columnas: 'columnas',
+                               
+      },
+      url: '../ajax/columnas.ajax.php',
+      type: "POST",
+      success: function(respuesta){
+         
+          if (respuesta) {
+
+	    		var array = JSON.parse(respuesta);
+                var i;
+                var out = "<option value='' selected>Seleccione Columna</option>";
+            	//console.log(array);
+                for(i = 0; i < array.length; i++) {
+                
+                        out+=" <option value="+array[i].columna+">"+array[i].columna+"</option>";
+                    
+                
+                }           
+                document.getElementById("columna_"+idTmp).innerHTML = out;
+
+	    	}else {
+
+          		console.log(respuesta);
+          	} 
+
+	    }
+
+	})
 }

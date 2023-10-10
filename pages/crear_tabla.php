@@ -81,7 +81,7 @@ require_once "../controladores/pacientes.controlador.php";
               </div>
             </div>
             <div class="card-body px-0 pb-2">
-              <form action="excel_campos.php" target="_blank" method="POST">
+              <form action="excel_tabla.php" target="_blank" method="POST">
               <div class="container-fluid">
                 <div class="row" id="columnas">
                   <label for="exampleFormControlSelect1">Seleccione Datos de Tabla Pacientes</label>
@@ -106,7 +106,7 @@ require_once "../controladores/pacientes.controlador.php";
                   </div>            
                 </div>
                 <div class="row text-right">
-                  <input type="hidden" name="numero_id[]" id="numero_id" value="">
+                  <input type="hidden" name="numero_id" id="numero_id" value="">
                   <div class="col-md-12">
                     <div class="form-group">                      
                       <button type="button" class="btn btn-success mt-5" onclick="agregar()">Agregar Columna</button>
@@ -193,7 +193,9 @@ require_once "../controladores/pacientes.controlador.php";
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
